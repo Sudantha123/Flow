@@ -16,7 +16,7 @@ object YouTubeCloudLibrarySync {
                     id = playlist.id,
                     name = playlist.title,
                     description = "",
-                    thumbnailUrl = playlist.thumbnail,
+                    thumbnailUrl = playlist.thumbnail.orEmpty(),
                 )
             }
             Log.d("YouTubeCloudSync", "Synced ${page.items.filterIsInstance<PlaylistItem>().size} cloud playlists")
