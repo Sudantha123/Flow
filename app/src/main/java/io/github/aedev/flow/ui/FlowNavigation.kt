@@ -315,6 +315,14 @@ fun NavGraphBuilder.flowAppGraph(
         )
     }
 
+    composable("settings/youtube_account") {
+        currentRoute.value = "settings/youtube_account"
+        showBottomNav.value = false
+        io.github.aedev.flow.ui.screens.settings.YouTubeAccountScreen(
+            navController = navController,
+        )
+    }
+
     composable("settings") {
         currentRoute.value = "settings"
         showBottomNav.value = false
