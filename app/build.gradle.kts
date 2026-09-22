@@ -16,7 +16,7 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "io.github.aedev.flow"
+        applicationId = "io.github.aedev.flow.account"
         minSdk = 26
         targetSdk = 36
         versionCode = 18
