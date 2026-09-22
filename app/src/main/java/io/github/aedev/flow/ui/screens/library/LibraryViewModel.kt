@@ -1,10 +1,8 @@
 package io.github.aedev.flow.ui.screens.library
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import io.github.aedev.flow.data.local.LikedVideosRepository
 import io.github.aedev.flow.data.local.PlaylistRepository
 import io.github.aedev.flow.data.local.ViewHistory
@@ -29,7 +27,6 @@ class LibraryViewModel
     @Inject
     constructor(
         playlistRepository: PlaylistRepository,
-        @ApplicationContext context: Context,
         likedVideosRepository: LikedVideosRepository,
         viewHistory: ViewHistory,
         videoDownloadManager: VideoDownloadManager,
