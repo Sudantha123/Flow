@@ -1,11 +1,14 @@
 package io.github.aedev.flow.ui.screens.library
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.github.aedev.flow.data.local.LikedVideosRepository
 import io.github.aedev.flow.data.local.PlaylistRepository
 import io.github.aedev.flow.data.local.ViewHistory
+import io.github.aedev.flow.data.repository.YouTubeCloudLibrarySync
 import io.github.aedev.flow.data.shorts.ShortsContentFilter
 import io.github.aedev.flow.data.video.VideoDownloadManager
 import io.github.aedev.flow.ui.components.library.LIBRARY_SHELF_ITEM_LIMIT
@@ -26,6 +29,7 @@ class LibraryViewModel
     @Inject
     constructor(
         playlistRepository: PlaylistRepository,
+        @ApplicationContext context: Context,
         likedVideosRepository: LikedVideosRepository,
         viewHistory: ViewHistory,
         videoDownloadManager: VideoDownloadManager,
@@ -33,6 +37,12 @@ class LibraryViewModel
         shortsContentFilter: ShortsContentFilter,
     ) : ViewModel() {
         private val sharing = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000L)
+        init {
+            kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.IO).launch {
+                YouTubeCloudLibrarySync.refreshPlaylists(playlistRepository)
+            }
+        }
+
 
         internal val history =
             viewHistory
