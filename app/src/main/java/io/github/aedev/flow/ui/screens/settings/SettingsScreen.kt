@@ -63,6 +63,7 @@ import io.github.aedev.flow.ui.components.layout.topbar.FlowTopBar
 import io.github.aedev.flow.ui.theme.ThemeMode
 import io.github.aedev.flow.ui.theme.extendedColors
 import io.github.aedev.flow.utils.AppLanguageManager
+import io.github.aedev.flow.ui.screens.settings.YouTubeAccountAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -99,6 +100,7 @@ fun SettingsScreen(
     onNavigateToExport: () -> Unit,
     onNavigateToSponsorBlockSettings: () -> Unit,
     onNavigateToDiscordSettings: () -> Unit,
+    onNavigateToYouTubeAccount: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -566,6 +568,32 @@ fun SettingsScreen(
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
+                item {
+                    Card(
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+                        shape = RoundedCornerShape(20.dp),
+                        onClick = onNavigateToYouTubeAccount,
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth().padding(18.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Icon(Icons.Outlined.AccountCircle, contentDescription = null)
+                            Spacer(Modifier.width(16.dp))
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text("YouTube account", style = MaterialTheme.typography.titleMedium)
+                                Text(
+                                    YouTubeAccountAuth.accountName(context)?.let { "Signed in as $it" }
+                                        ?: "Sign in to sync your YouTube Music library",
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
+                            Icon(Icons.Outlined.ChevronRight, contentDescription = null)
+                        }
+                    }
+                }
+
                 // =================================================
 // 🧠 MY FLOW PERSONALITY (FLOW EXCLUSIVE FEATURE)
 // =================================================
