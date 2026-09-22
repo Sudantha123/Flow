@@ -83,7 +83,7 @@ fun YouTubeAccountScreen(navController: NavController) {
                         email = account.email.orEmpty(),
                         handle = account.channelHandle.orEmpty(),
                     )
-                    status = "Signed in as \${account.name}"
+                    status = "Signed in as ${account.name}"
                     loading = false
                     navController.popBackStack()
                     return
