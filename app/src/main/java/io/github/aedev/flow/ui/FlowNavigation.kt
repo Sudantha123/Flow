@@ -354,6 +354,7 @@ fun NavGraphBuilder.flowAppGraph(
             onNavigateToExport = { navController.navigate("settings/export") },
             onNavigateToSponsorBlockSettings = { navController.navigate("settings/sponsorblock") },
             onNavigateToDiscordSettings = { navController.navigate("settings/discord") },
+            onNavigateToYouTubeAccount = { navController.navigate("settings/youtube_account") },
         )
     }
 
